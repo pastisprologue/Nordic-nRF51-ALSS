@@ -50,12 +50,12 @@ static void on_write(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
 
 /**@brief Function for handling the Read/Write Authorize Request evemt.
  *
- * @param[in]   p_alss    	Ambient Light Sensor Service structure.
+ * @param[in]   p_alss      Ambient Light Sensor Service structure.
  * @param[in]   p_ble_evt   Event received from the BLE stack.
  */
 static void on_rw_authorize(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
 {
-	/* Need to define */
+    /* Need to define */
 }
 
 
@@ -74,10 +74,10 @@ void ble_alss_on_ble_evt(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
         case BLE_GATTS_EVT_WRITE:
             on_write(p_alss, p_ble_evt);
             break;
-		
-		case BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST:
-			on_rw_authorize(p_alss, p_ble_evt);
-			break;
+        
+        case BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST:
+            on_rw_authorize(p_alss, p_ble_evt);
+            break;
             
         default:
             // No implementation needed.
@@ -96,26 +96,26 @@ static uint32_t irval_char_add(ble_alss_t * p_alss)
     ble_uuid_t          ble_uuid;
     ble_gatts_attr_md_t attr_md;
 
-#ifdef ALSS_UDD	
-	uint8_t irval_UDD[] = "ALSS_IRVAL";
+#ifdef ALSS_UDD 
+    uint8_t irval_UDD[] = "ALSS_IRVAL";
 #endif
-	
+    
     memset(&char_md, 0, sizeof(char_md));
     
     char_md.char_props.read   = 1;
-	char_md.char_props.notify = 1;
+    char_md.char_props.notify = 1;
     char_md.p_char_user_desc  = NULL;
     char_md.p_char_pf         = NULL;
     char_md.p_user_desc_md    = NULL;
     char_md.p_cccd_md         = NULL;
     char_md.p_sccd_md         = NULL;
 
-#ifdef ALSS_UDD	
-	char_md.p_char_user_desc 		= irval_UDD;
-	char_md.char_user_desc_max_size = sizeof(irval_UDD);
-	char_md.char_user_desc_size 	= sizeof(irval_UDD);
+#ifdef ALSS_UDD 
+    char_md.p_char_user_desc        = irval_UDD;
+    char_md.char_user_desc_max_size = sizeof(irval_UDD);
+    char_md.char_user_desc_size     = sizeof(irval_UDD);
 #endif    
-	
+    
     ble_uuid.type = p_alss->uuid_type;
     ble_uuid.uuid = ALSS_UUID_IRVAL_CHAR;
     
@@ -151,11 +151,11 @@ static uint32_t virval_char_add(ble_alss_t * p_alss)
     ble_gatts_attr_t    attr_char_value;
     ble_uuid_t          ble_uuid;
     ble_gatts_attr_md_t attr_md;
-	
-#ifdef ALSS_UDD		
-	uint8_t virval_UDD[] = "ALSS_VIRVAL";
+    
+#ifdef ALSS_UDD     
+    uint8_t virval_UDD[] = "ALSS_VIRVAL";
 #endif
-	    
+        
     memset(&char_md, 0, sizeof(char_md));
     
     char_md.char_props.read   = 1;
@@ -164,11 +164,11 @@ static uint32_t virval_char_add(ble_alss_t * p_alss)
     char_md.p_user_desc_md    = NULL;
     char_md.p_cccd_md         = NULL;
     char_md.p_sccd_md         = NULL;
-	
+    
 #ifdef ALSS_UDD
-	char_md.p_char_user_desc 		= virval_UDD;
-	char_md.char_user_desc_max_size = sizeof(virval_UDD);
-	char_md.char_user_desc_size 	= sizeof(virval_UDD);
+    char_md.p_char_user_desc        = virval_UDD;
+    char_md.char_user_desc_max_size = sizeof(virval_UDD);
+    char_md.char_user_desc_size     = sizeof(virval_UDD);
 #endif    
 
     ble_uuid.type = p_alss->uuid_type;
@@ -208,11 +208,11 @@ static uint32_t lux_char_add(ble_alss_t * p_alss)
     ble_gatts_attr_t    attr_char_value;
     ble_uuid_t          ble_uuid;
     ble_gatts_attr_md_t attr_md;
-	
-#ifdef ALSS_UDD		
-	uint8_t lux_UDD[] = "ALSS_LUX";
+    
+#ifdef ALSS_UDD     
+    uint8_t lux_UDD[] = "ALSS_LUX";
 #endif
-	
+    
     memset(&cccd_md, 0, sizeof(cccd_md));
 
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
@@ -228,11 +228,11 @@ static uint32_t lux_char_add(ble_alss_t * p_alss)
     char_md.p_user_desc_md    = NULL;
     char_md.p_cccd_md         = &cccd_md;
     char_md.p_sccd_md         = NULL;
-	
+    
 #ifdef ALSS_UDD
-	char_md.p_char_user_desc 		= lux_UDD;
-	char_md.char_user_desc_max_size = sizeof(lux_UDD);
-	char_md.char_user_desc_size 	= sizeof(lux_UDD);
+    char_md.p_char_user_desc        = lux_UDD;
+    char_md.char_user_desc_max_size = sizeof(lux_UDD);
+    char_md.char_user_desc_size     = sizeof(lux_UDD);
 #endif    
 
     ble_uuid.type = p_alss->uuid_type;
@@ -279,32 +279,32 @@ uint32_t ble_alss_init(ble_alss_t * p_alss)
         return err_code;
     }
     
-	err_code = irval_char_add(p_alss);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
-	
-    err_code = virval_char_add(p_alss);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
-	
-	err_code = lux_char_add(p_alss);
+    err_code = irval_char_add(p_alss);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
     }
     
-	return NRF_SUCCESS;
+    err_code = virval_char_add(p_alss);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+    
+    err_code = lux_char_add(p_alss);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+    
+    return NRF_SUCCESS;
 }
 
 
 uint32_t ble_alss_on_lux_change(ble_alss_t * p_alss, uint32_t lux)
 {
     ble_gatts_hvx_params_t params;
-	uint32_t swap = ((lux>>24)&0xff) | ((lux<<8)&0xff0000)  | ((lux>>8)&0xff00)  | ((lux<<24)&0xff000000);
+    uint32_t swap = ((lux>>24)&0xff) | ((lux<<8)&0xff0000)  | ((lux>>8)&0xff00)  | ((lux<<24)&0xff000000);
     uint16_t len = sizeof(swap);
     
     memset(&params, 0, sizeof(params));

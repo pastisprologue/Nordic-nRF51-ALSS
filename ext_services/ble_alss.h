@@ -15,11 +15,11 @@
 #include "ble.h"
 #include "ble_srv_common.h"
 
-#define LMP_UUID_BASE 			{0xC5, 0xA4, 0xAB, 0x52, 0x98, 0x54, 0x16, 0x8D, 0x71, 0x4C, 0x03, 0x4A, 0x00, 0x00, 0x09, 0xF3}
-#define ALSS_UUID_SERVICE 		0x0010
-#define ALSS_UUID_IRVAL_CHAR 	0x0011
-#define ALSS_UUID_VIRVAL_CHAR 	0x0012
-#define ALSS_UUID_LUX_CHAR		0x0013
+#define LMP_UUID_BASE           {0xC5, 0xA4, 0xAB, 0x52, 0x98, 0x54, 0x16, 0x8D, 0x71, 0x4C, 0x03, 0x4A, 0x00, 0x00, 0x09, 0xF3}
+#define ALSS_UUID_SERVICE       0x0010
+#define ALSS_UUID_IRVAL_CHAR    0x0011
+#define ALSS_UUID_VIRVAL_CHAR   0x0012
+#define ALSS_UUID_LUX_CHAR      0x0013
 
 
 // Forward declaration of the ble_alss_t type. 
@@ -29,12 +29,12 @@ typedef struct ble_alss_s ble_alss_t;
 /**@brief Ambient Light Sensor Service structure. This contains various status information for the service. */
 typedef struct ble_alss_s
 {
-    uint16_t                    	service_handle;
-    ble_gatts_char_handles_t    	irval_char_handles;
-    ble_gatts_char_handles_t    	virval_char_handles;
-    ble_gatts_char_handles_t    	lux_char_handles;
-    uint8_t                     	uuid_type;
-    uint16_t                    	conn_handle;
+    uint16_t                        service_handle;
+    ble_gatts_char_handles_t        irval_char_handles;
+    ble_gatts_char_handles_t        virval_char_handles;
+    ble_gatts_char_handles_t        lux_char_handles;
+    uint8_t                         uuid_type;
+    uint16_t                        conn_handle;
 } ble_alss_t;
 
 
