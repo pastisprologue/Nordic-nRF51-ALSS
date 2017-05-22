@@ -32,7 +32,7 @@ typedef struct ble_alss_s
     uint16_t                    	service_handle;
     ble_gatts_char_handles_t    	irval_char_handles;
     ble_gatts_char_handles_t    	virval_char_handles;
-	ble_gatts_char_handles_t    	lux_char_handles;
+    ble_gatts_char_handles_t    	lux_char_handles;
     uint8_t                     	uuid_type;
     uint16_t                    	conn_handle;
 } ble_alss_t;
