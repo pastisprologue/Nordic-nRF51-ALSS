@@ -36,29 +36,11 @@ static void on_disconnect(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
     p_alss->conn_handle = BLE_CONN_HANDLE_INVALID;
 }
 
-
-/**@brief Function for handling the Write event.
+/**@brief Function for distributing events passed by SD.
  *
  * @param[in]   p_alss      Ambient Light Sensor Service structure.
  * @param[in]   p_ble_evt   Event received from the BLE stack.
  */
-static void on_write(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
-{
-    /* Need to define */
-}
-
-
-/**@brief Function for handling the Read/Write Authorize Request evemt.
- *
- * @param[in]   p_alss      Ambient Light Sensor Service structure.
- * @param[in]   p_ble_evt   Event received from the BLE stack.
- */
-static void on_rw_authorize(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
-{
-    /* Need to define */
-}
-
-
 void ble_alss_on_ble_evt(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
 {
     switch (p_ble_evt->header.evt_id)
@@ -69,14 +51,6 @@ void ble_alss_on_ble_evt(ble_alss_t * p_alss, ble_evt_t * p_ble_evt)
             
         case BLE_GAP_EVT_DISCONNECTED:
             on_disconnect(p_alss, p_ble_evt);
-            break;
-            
-        case BLE_GATTS_EVT_WRITE:
-            on_write(p_alss, p_ble_evt);
-            break;
-        
-        case BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST:
-            on_rw_authorize(p_alss, p_ble_evt);
             break;
             
         default:
